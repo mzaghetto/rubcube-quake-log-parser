@@ -1,12 +1,11 @@
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
+import { gamesRoutes } from './http/controllers/games/routes'
 
 export const app = fastify()
 
-app.get('/', async (request, reply) => {
-  return { hello: 'world' }
-})
+app.register(gamesRoutes)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
