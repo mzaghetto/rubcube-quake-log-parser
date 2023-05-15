@@ -5,7 +5,6 @@ Eu como administrador do jogo, quero ter a estatística por jogo, do total de mo
   - [x] Deve ser possível pegar as estatísticas dos jogos
   - [x] Deve registrar o número total de mortes ocorridas em cada jogo
   - [x] Deve categorizar as mortes por causa (MOD_UNKNOWN, MOD_SHOTGUN, MOD_GAUNTLET, MOD_MACHINEGUN, etc)
-  - [ ] Deve categorizar as mortes causadas pelo `<world>`
 
 #### Regras de negócio
   - [x] Somente administradores terão acesso as estatísticas
@@ -54,8 +53,8 @@ Abaixo as regras gerais independente da história
   - [x] Cada partida/game é finalizada com a leitura de uma linha antes do próximo InitGame
 
 #### Regras não funcionais
-  - [ ] Rodar via docker
-  - [ ] Rodar localmente
+  - [x] Rodar via docker
+  - [x] Rodar localmente
 
 ## Com mais tempo, mais responsabilidades *Tio ben da programação
 Neste momento foi pensado em implementar as regras para atender ao básico da aplicação e também mostrar um pouco do conhecimento que possuo com código / arquitetura.
