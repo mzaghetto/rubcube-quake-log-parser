@@ -78,7 +78,7 @@ export class Parser {
   }
 
   getCurrentGame(): Game {
-    return this.games.get(this.currentGame)
+    return this.games.get(this.currentGame) ?? new Game()
   }
 }
 

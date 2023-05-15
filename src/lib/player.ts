@@ -1,3 +1,4 @@
+import { Parser } from './parser'
 const WORLD_ID = 1022
 
 interface PlayerData {
@@ -57,7 +58,7 @@ class Player {
 
     if (players) {
       currentGame.addKill()
-      if (players[1] == WORLD_ID) {
+      if (players[1] === WORLD_ID.toString()) {
         const loser = currentGame.players.get(players[2])
         if (loser) {
           loser.deathsByWorld++
