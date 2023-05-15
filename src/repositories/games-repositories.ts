@@ -35,7 +35,18 @@ export type BasicStatistics = {
   }
 }
 
+export type PlayerStatistics = {
+  id: string
+  players: string[]
+  winner: string
+  my_position: number
+  ranking: {
+    [key: string]: number
+  }
+}
+
 export interface GamesRepository {
   create(data: GamesCreateInput): Promise<Games>
   getAll(): Promise<BasicStatistics[]>
+  getByPlayerName(playerName: string): Promise<PlayerStatistics[]>
 }

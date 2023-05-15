@@ -48,4 +48,32 @@ export class InMemoryGamesRepository implements GamesRepository {
 
     return Promise.resolve(games)
   }
+
+  async getByPlayerName(playerName: string): Promise<PlayerStatistics[]> {
+    const games = this.items.filter((item) => item.players.includes(playerName))
+
+    const playerStatistics = games.map((game) => {
+      const sortedRanking = Object.entries(game.ranking)
+      sortedRanking.sort((a, b) => b[1] - a[1])
+
+      const ranking = Object.fromEntries(sortedRanking)
+
+      const winner = Object.keys(ranking)[0]
+
+      const positionPlayer =
+        Object.keys(ranking).findIndex((player) => player === playerName) + 1
+
+      const gameReturn = {
+        id: game.id,
+        players: game.players,
+        winner,
+        my_position: positionPlayer,
+        ranking,
+      }
+
+      return gameReturn
+    })
+
+    return Promise.resolve(playerStatistics)
+  }
 }
