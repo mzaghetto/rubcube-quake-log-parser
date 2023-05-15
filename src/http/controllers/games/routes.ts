@@ -5,6 +5,7 @@ import { adminOnly } from '@/http/middlewares/admin-validation'
 import { basicStatistics } from './basic-statistics'
 import { playerStatistics } from './player-statistics'
 import { gamesStatistics } from './games-statistics'
+import { gameStatistics } from './game-statistics'
 
 export async function gamesRoutes(app: FastifyInstance) {
   app.get('/parser', { onRequest: [parserMiddleware()] }, parser)
@@ -17,4 +18,9 @@ export async function gamesRoutes(app: FastifyInstance) {
 
   // historia 3
   app.get('/games-statistics', { onRequest: [adminOnly] }, gamesStatistics)
+  app.get(
+    '/games-statistics/:gameId',
+    { onRequest: [adminOnly] },
+    gameStatistics,
+  )
 }

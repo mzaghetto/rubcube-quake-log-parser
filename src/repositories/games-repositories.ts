@@ -63,5 +63,6 @@ export interface GamesRepository {
   create(data: GamesCreateInput): Promise<Games>
   getAll(): Promise<BasicStatistics[]>
   getAllGameStatistics(): Promise<GamesStatistics[]>
+  getGameStatisticsById(id: string): Promise<GamesStatistics | null>
   getByPlayerName(playerName: string): Promise<PlayerStatistics[]>
 }
