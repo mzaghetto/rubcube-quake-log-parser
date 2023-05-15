@@ -1,0 +1,47 @@
+{
+  "name": "rubcube-quake-log-parser",
+  "version": "1.0.0",
+  "description": "Repositório para testar as habilidades de um back-end realizando um log parser do quake",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch --inspect src/server.ts",
+    "start:docker": "docker run -p 5001:5001 rubcube-quake",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "build:docker": "docker build -t rubcube-quake .",
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "fastify",
+    "rubcube",
+    "log",
+    "parser",
+    "quake"
+  ],
+  "author": "mzaghetto",
+  "license": "ISC",
+  "devDependencies": {
+    "@rocketseat/eslint-config": "1.2.0",
+    "@types/node": "18.15.11",
+    "@types/supertest": "2.0.12",
+    "@vitest/coverage-c8": "0.30.1",
+    "@vitest/ui": "0.30.1",
+    "eslint": "8.40.0",
+    "supertest": "6.3.3",
+    "tsup": "6.7.0",
+    "tsx": "3.12.6",
+    "typescript": "5.0.4",
+    "vite-tsconfig-paths": "4.2.0",
+    "vitest": "0.30.1"
+  },
+  "dependencies": {
+    "dotenv": "16.0.3",
+    "fastify": "4.15.0",
+    "zod": "3.21.4"
+  }
+}
