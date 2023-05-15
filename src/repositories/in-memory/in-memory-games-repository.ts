@@ -4,6 +4,8 @@ import {
   Games,
   GamesCreateInput,
   GamesRepository,
+  GamesStatistics,
+  PlayerStatistics,
 } from '../games-repositories'
 
 export class InMemoryGamesRepository implements GamesRepository {
@@ -47,6 +49,33 @@ export class InMemoryGamesRepository implements GamesRepository {
     }))
 
     return Promise.resolve(games)
+  }
+
+  async getAllGameStatistics(): Promise<GamesStatistics[]> {
+    const games = this.items
+
+    const gamesStatistics = games.map((game) => {
+      const sortedRanking = Object.entries(game.ranking)
+      sortedRanking.sort((a, b) => b[1] - a[1])
+
+      const ranking = Object.fromEntries(sortedRanking)
+
+      const winner = Object.keys(ranking)[0]
+
+      const gameReturn = {
+        id: game.id,
+        total_kills: game.total_kills,
+        world_kills: game.world_kills,
+        winner,
+        means_of_deaths: game.means_of_deaths,
+        players: game.players,
+        ranking,
+      }
+
+      return gameReturn
+    })
+
+    return Promise.resolve(gamesStatistics)
   }
 
   async getByPlayerName(playerName: string): Promise<PlayerStatistics[]> {

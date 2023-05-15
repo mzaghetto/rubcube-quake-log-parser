@@ -45,8 +45,23 @@ export type PlayerStatistics = {
   }
 }
 
+export type GamesStatistics = {
+  id: string
+  total_kills: number
+  world_kills: number
+  winner: string
+  means_of_deaths: {
+    [key: string]: number
+  }
+  players: string[]
+  ranking: {
+    [key: string]: number
+  }
+}
+
 export interface GamesRepository {
   create(data: GamesCreateInput): Promise<Games>
   getAll(): Promise<BasicStatistics[]>
+  getAllGameStatistics(): Promise<GamesStatistics[]>
   getByPlayerName(playerName: string): Promise<PlayerStatistics[]>
 }

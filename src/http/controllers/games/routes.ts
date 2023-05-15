@@ -4,6 +4,7 @@ import { parser } from './parser'
 import { adminOnly } from '@/http/middlewares/admin-validation'
 import { basicStatistics } from './basic-statistics'
 import { playerStatistics } from './player-statistics'
+import { gamesStatistics } from './games-statistics'
 
 export async function gamesRoutes(app: FastifyInstance) {
   app.get('/parser', { onRequest: [parserMiddleware()] }, parser)
@@ -13,4 +14,7 @@ export async function gamesRoutes(app: FastifyInstance) {
 
   // historia 2
   app.post('/player-statistics', playerStatistics)
+
+  // historia 3
+  app.get('/games-statistics', { onRequest: [adminOnly] }, gamesStatistics)
 }
