@@ -37,6 +37,10 @@ class Player {
 
   static new(parser: Parser, line: string): void {
     const currentGame = parser.getCurrentGame()
+
+    const { id } = this.getPlayerData(line)
+    if (currentGame.getPlayerById(id)) return
+
     currentGame.newPlayer(new Player(line))
   }
 
