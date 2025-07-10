@@ -10,13 +10,10 @@ import { gameStatistics } from './game-statistics'
 export async function gamesRoutes(app: FastifyInstance) {
   app.get('/parser', { onRequest: [parserMiddleware()] }, parser)
 
-  // historia 1
   app.get('/basic-stats', { onRequest: [adminOnly] }, basicStatistics)
 
-  // historia 2
   app.post('/player-statistics', playerStatistics)
 
-  // historia 3
   app.get('/games-statistics', { onRequest: [adminOnly] }, gamesStatistics)
   app.get(
     '/games-statistics/:gameId',

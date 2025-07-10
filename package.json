@@ -1,7 +1,7 @@
 {
   "name": "rubcube-quake-log-parser",
   "version": "1.0.0",
-  "description": "Repositório para testar as habilidades de um back-end realizando um log parser do quake",
+  "description": "Repository to test the skills of a back-end developer by building a Quake log parser.",
   "main": "index.js",
   "scripts": {
     "start:dev": "tsx watch --inspect src/server.ts",

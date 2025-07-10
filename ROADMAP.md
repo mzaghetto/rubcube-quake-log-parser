@@ -1,74 +1,74 @@
-## Historia 1
-Eu como administrador do jogo, quero ter a estatística por jogo, do total de mortes, de mortes por causa e de mortes causadas pelo `<world>` para entender dificuldade dos jogadores.
+## Story 1
+As a game administrator, I want to have game statistics, including the total number of deaths, deaths by cause, and deaths caused by `<world>` to understand player difficulty.
 
-#### Requisitos funcionais
-  - [x] Deve ser possível pegar as estatísticas dos jogos
-  - [x] Deve registrar o número total de mortes ocorridas em cada jogo
-  - [x] Deve categorizar as mortes por causa (MOD_UNKNOWN, MOD_SHOTGUN, MOD_GAUNTLET, MOD_MACHINEGUN, etc)
+#### Functional Requirements
+  - [x] It must be possible to get game statistics.
+  - [x] It must record the total number of deaths in each game.
+  - [x] It must categorize deaths by cause (MOD_UNKNOWN, MOD_SHOTGUN, MOD_GAUNTLET, MOD_MACHINEGUN, etc.).
 
-#### Regras de negócio
-  - [x] Somente administradores terão acesso as estatísticas
-  - [x] As estatísticas serão classificadas por jogos
-  - [x] Poderá ser pego todas as estatísticas de todos os jogos
+#### Business Rules
+  - [x] Only administrators will have access to the statistics.
+  - [x] The statistics will be classified by game.
+  - [x] It will be possible to get all statistics for all games.
 
-## História 2
-Eu como player, quero ver o ranking de cada partida para saber o vencedor e meu desempenho.
+## Story 2
+As a player, I want to see the ranking of each match to know the winner and my performance.
 
-Critérios de aceite:
-Os jogadores começam com zero pontos
-A cada kill o jogador ganha um ponto
-A cada morte pelo mundo o jogador perde um ponto
-É permitido pontuação negativa
-O <world> não deve entrar no ranking de jogadores
-Os jogadores podem mudar de nome no meio da partida, mas só o último nome deve ser considerado no ranking
+Acceptance Criteria:
+Players start with zero points.
+For each kill, the player gains one point.
+For each death by the world, the player loses one point.
+Negative scores are allowed.
+`<world>` should not be included in the player rankings.
+Players can change their name mid-match, but only the last name should be considered in the ranking.
 
-#### Requisitos funcionais
-  - [x] Deve ser possível visualizar o ranking da partida
+#### Functional Requirements
+  - [x] It must be possible to view the match ranking.
 
-#### Regras de negócio
-  - [x] Cada jogador terá a sua visibilidade
-  - [x] Os ranking serão classificadas por jogos
-  - [x] Deve ser apresentado o nome mais recente do jogador na lista dos rankings
-  - [x] Deve ser permitido pontuação negativa
-  - [x] World não deve ser apresentado no ranking
+#### Business Rules
+  - [x] Each player will have their own visibility.
+  - [x] The rankings will be classified by game.
+  - [x] The player's most recent name must be displayed in the rankings list.
+  - [x] Negative scores must be allowed.
+  - [x] World should not be shown in the ranking.
 
-## História 3
-Eu como administrador do jogo, quero poder consultar as estatísticas de um jogo específicou ou de todos os jogos de maneira estruturada por uma API para montar uma visualização para os jogadores
+## Story 3
+As a game administrator, I want to be able to consult the statistics of a specific game or all games in a structured way through an API to create a visualization for the players.
 
-#### Requisitos funcionais
-  - [x] Deve ser possível pegar as estatísticas dos jogos
+#### Functional Requirements
+  - [x] It must be possible to get game statistics.
 
-#### Regras de negócio
-  - [x] Somente o administrador deve ter acesso
-  - [x] Pode ser pego as estatisticas de todas as partidas
-  - [x] Pode ser pego as estatisticas por ID da partida
-  - [x] World não deve ser apresentado no ranking
+#### Business Rules
+  - [x] Only the administrator should have access.
+  - [x] Statistics for all matches can be retrieved.
+  - [x] Statistics can be retrieved by match ID.
+  - [x] World should not be shown in the ranking.
 
-## Regras gerais
-Abaixo as regras gerais independente da história
+## General Rules
+Below are the general rules regardless of the story.
 
-#### Regras de negócio (gerais)
-  - [x] As estatísticas dos jogos virão de um arquivo .log
-  - [x] Cada partida/game é iniciada com InitGame
-  - [x] Cada partida/game é finalizada com a leitura de uma linha antes do próximo InitGame
+#### Business Rules (General)
+  - [x] Game statistics will come from a .log file.
+  - [x] Each match/game is started with `InitGame`.
+  - [x] Each match/game is finished by reading one line before the next `InitGame`.
 
-#### Regras não funcionais
-  - [x] Rodar via docker
-  - [x] Rodar localmente
+#### Non-Functional Rules
+  - [x] Run via Docker.
+  - [x] Run locally.
 
-## Com mais tempo, mais responsabilidades *Tio ben da programação
-Neste momento foi pensado em implementar as regras para atender ao básico da aplicação e também mostrar um pouco do conhecimento que possuo com código / arquitetura.
+## With more time, come more responsibilities *Programming's Uncle Ben (Spider-man)
+At this moment, the focus was on implementing the rules to meet the basic requirements of the application and also to demonstrate some of my knowledge of code/architecture.
 
-Claro que pode ser melhorado a aplicação pra atender de diversas outras maneiras, mas pelo tempo este é o resultado.
+Of course, the application can be improved in many other ways, but given the time, this is the result.
 
-Abaixo algumas coisas que poderia ser implementado com mais tempo
+Below are some things that could be implemented with more time.
 
-#### Implementações futuras (com mais tempo de implementação)
-  - [ ] Rota para registro de usuários
-  - [ ] Rota para trocar o tipo de usuário (administrador ou player)
-  - [ ] Rota de autenticação (JWT)
-  - [ ] Checar se o log enviado já foi alguma vez enviado ao servidor (envio duplicado)
-  - [ ] Os dados da aplicação precisam estar persistidos em um banco [MongoDB, PostgreSQL, etc];
-  - [ ] Adicionar swagger para documentação de rotas
-  - [ ] Testes E2E
-  - [ ] Docker compose (pra subir o banco + aplicação em conjunto)
+#### Future Implementations (with more implementation time)
+  - [ ] Route for user registration.
+  - [ ] Route to change user type (administrator or player).
+  - [ ] Authentication route (JWT).
+  - [ ] Check if the submitted log has ever been sent to the server before (duplicate submission).
+  - [ ] The application data needs to be persisted in a database [MongoDB, PostgreSQL, etc.].
+  - [ ] Add Swagger for route documentation.
+  - [ ] E2E Tests.
+  - [ ] Docker Compose (to run the database + application together).

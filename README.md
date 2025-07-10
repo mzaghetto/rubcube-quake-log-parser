@@ -1,65 +1,71 @@
 ## Rubcube - Quake Log Parser
-O Objetivo desse repositório é desenvolver uma aplicação que atenda as histórias criadas pela equipe da [@Rubcube](https://www.rubcube.com/)
+The objective of this repository is to develop an application that fulfills the user stories created by the [@Rubcube](https://www.rubcube.com/) team.
 
-Você pode ver as histórias e regras criadas a partir das histórias no [roadmap](./ROADMAP.md)
+Based on the user stories, I created the `functional requirements` and the `business requirements`.
+You can see the stories and rules created from them in the [roadmap](./ROADMAP.md).
 
 ## Tech Stack
 - [Typescript](https://www.typescriptlang.org/)
-- [tsup](https://github.com/egoist/tsup) (para transpilar de Typescript para JavaScript)
+- [tsup](https://github.com/egoist/tsup) (to transpile from TypeScript to JavaScript)
 - [Node.js](https://nodejs.org/en)
-- [Fastify](https://www.fastify.io/) (Framework utilizado nesta aplicação)
-- [Zod](https://github.com/colinhacks/zod) (Validador de schema)
-- [Vite](https://vitejs.dev/) (Utilizado para os testes)
-- [Husky](https://www.npmjs.com/package/husky) (Restes pre-commit, só permite o commit se estiver com os testes em dia)
-- [SuperTest](https://github.com/ladjs/supertest) (Seria utilizado para teste e2e)
-- [Github Actions](https://github.com/features/actions) (Para que rode a esteira de testes sempre que sobe uma PR / Push)
+- [Fastify](https://www.fastify.io/) (Framework used in this application)
+- [Zod](https://github.com/colinhacks/zod) (Schema validator)
+- [Vite](https://vitejs.dev/) (Used for tests)
+- [Husky](https://www.npmjs.com/package/husky) (Pre-commit tests, only allows committing if the tests are up to date)
+- [SuperTest](https://github.com/ladjs/supertest) (Used for e2e testing)
+- [Github Actions](https://github.com/features/actions) (To run the test pipeline whenever a PR/Push is made)
 
-## Como rodar a aplicação
-Rodando localmente
+## How to run the application
+First, install the dependecies
+```shell
+npm run install
 ```
+
+Running locally
+```shell
 npm run start:dev
 ```
 
-Rodando pelo docker
-```
+Running with Docker
+```shell
 npm run build:docker
 npm run start:docker
 ```
 
-## Documentação de boa utilização da aplicação
-Como esta aplicação pode ser melhorada, segue algumas orientações para que você a utilize sem problemas
+## Application Usage Documentation
+To ensure the proper functioning of the application, please follow these guidelines.
 
-O parse do arquivo `games.log` é gerado a partir do momento que é utilizada a rota `/parser`. 
+The `games.log` file is parsed when the `/parser` route is used.
 
-Desta forma, para que você consiga todos os dados nas outras rotas sem problemas, primeiro rode a rota `/parser`
+Therefore, to get all the data on the other routes without any issues, first run the `/parser` route.
 
-#### cURL rota /parser
+#### cURL for /parser route
 ```shell
 curl --location --request GET 'http://localhost:5001/parser'
 ```
 
-Depois disso, você tem as seguintes alternativas:
+After that, you have the following alternatives:
 
-### Rota para história 1
-Para ter sucesso na rota, você pode utilizar o cURL abaixo:
+### Route for Story 1
+To successfully use the route, you can use the cURL below:
 
-#### cURL rota /basic-stats com admin
+#### cURL for /basic-stats route with admin
 ```shell
 curl --location --request GET 'http://localhost:5001/basic-stats' \
 --header 'user: admin'
 ```
 
-Caso queira testar a história e tentar pegar as informações da rota como usuario (irá retornar erro 403):
-#### cURL rota /basic-stats com user
+If you want to test the story and try to get the route information as a user (it will return a 403 error):
+#### cURL for /basic-stats route with user
 ```shell
 curl --location --request GET 'http://localhost:5001/basic-stats' \
 --header 'user: user' \
 --header 'Content-Type: application/json' \
 ```
 
-### Rota para história 2
-Para ter sucesso na rota, você pode utilizar o cURL abaixo:
-#### cURL rota /basic-stats com admin
+### Route for Story 2
+To successfully use the route, you can use the cURL below:
+#### cURL for /player-statistics route
 ```shell
 curl --location --request POST 'http://localhost:5001/player-statistics' \
 --header 'Content-Type: application/json' \
@@ -68,46 +74,47 @@ curl --location --request POST 'http://localhost:5001/player-statistics' \
 }'
 ```
 
-### Rota para história 3
-Existem 2 rotas, a primeira rota vai pegar todas as partidas e a segunda uma partida específica pelo ID.
+### Route for Story 3
+There are 2 routes: the first one will get all the games, and the second one will get a specific game by its ID.
 
-Para utilizar a segunda rota, é interessante rodar a rota com todas partidas e pegar o ID da rota em específico que deseja visualizar
-#### cURL rota com todas partidas /games-statistics com admin
+To use the second route, it's recommended to run the route that fetches all games first to get the specific ID of the game you want to view.
+#### cURL for the route with all games /games-statistics with admin
 ```shell
 curl --location --request GET 'http://localhost:5001/games-statistics' \
 --header 'user: admin'
 ```
 
-#### cURL rota com ID de partida específica /games-statistics/{gameID} com admin
+#### cURL for the route with a specific game ID /games-statistics/{gameID} with admin
 ```shell
 curl --location --request GET 'http://localhost:5001/games-statistics/8e5afa7d-f050-4f3f-92f0-afd2bd615e62' \
 --header 'user: admin'
 ```
 
-## Testes
-Essa aplicação possui alguns comandos de teste. Abaixo a lista dos comandos:
+## Tests
+This application has several test commands. Below is the list of commands:
 
-#### teste de unidade
+#### unit test
 ```
 npm test
 ```
 
-#### teste de coverage
+#### coverage test
 ```
 npm run test:coverage
 ```
 
-#### testes em modo watch (cada momento que é alterado um arquivo, o teste é refeito)
+#### tests in watch mode (the tests are re-run every time a file is changed)
 ```
 npm run test:watch
 ```
 
-#### testes com UI (para ver os testes por uma UI do vitest)
+#### tests with UI (to view the tests through the Vitest UI)
 ```
 npm run test:ui
 ```
 
 ## CI
-Foi adicionado nesta aplicaçao o github actions para que os testes sejam gerados ao realizar um push ou abrir uma PR
+GitHub Actions has been added to this application to run tests automatically when a push is made or a PR is opened.
 
-[Veja em ação](https://github.com/mzaghetto/rubcube-quake-log-parser/actions)
+[See it in action](https://github.com/mzaghetto/rubcube-quake-log-parser/actions)
+
